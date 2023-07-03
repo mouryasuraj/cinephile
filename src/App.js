@@ -1,25 +1,56 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Header from './components/Header';
+import Movie from './components/Movie';
+import Movies from './movieData.json'
+import Pages from './components/Pages';
+import Footer from './components/Footer';
 
 function App() {
+  const arr = ["<< first","<< Previous",1,2,3,4,5,6,7,8,9,10,"...","Next >>"];
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <div className='Main'>
+        <h2 className='MovieTitle'>All Movies of Batman and Star wars</h2>
+        <div className='pages'>
+          {
+            arr.map((elem)=>{
+              return(
+                <Pages name={elem}/>
+              )
+            })
+          }
+        </div>
+        <div className='MovieBox'>
+          {
+            Movies.map((element, index)=>{
+              return (
+              <Movie 
+              key={index}
+                title={element.Title} 
+                year = {element.Year} 
+                image = {element.Poster} /> 
+            )
+            })
+          }
+        </div>
+        <div className='pages'>
+          {
+            arr.map((elem)=>{
+              return(
+                <Pages name={elem}/>
+              )
+            })
+          }
+        </div>
+        <div className='footer'>
+          <Footer />
+        </div>
+        
+      </div>
     </div>
   );
 }
-
+ 
 export default App;
